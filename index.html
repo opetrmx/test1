@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Damar Tools — kumpulan tools online gratis yang praktis, cepat, dan mudah digunakan.">
+  <meta name="theme-color" content="#071225">
+  <title>Damar Tools — Free Online Tools</title>
+  <style>
+    :root {
+      --bg: #061122;
+      --bg-soft: #09182c;
+      --panel: rgba(12, 29, 51, .82);
+      --panel-hover: #102641;
+      --line: rgba(67, 145, 220, .24);
+      --text: #eef6ff;
+      --muted: #a9c3df;
+      --blue: #0798ff;
+      --cyan: #37d6ff;
+      --shadow: 0 20px 65px rgba(0, 113, 255, .15);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(ellipse at 76% 23%, rgba(0, 95, 220, .19), transparent 35%),
+        radial-gradient(ellipse at 15% 10%, rgba(0, 153, 255, .08), transparent 28%),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
+    .site-header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(5, 15, 30, .88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 76px; display: flex; align-items: center; gap: 30px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; font-size: 25px; font-weight: 800; letter-spacing: -.7px; white-space: nowrap; }
+    .brand-mark {
+      width: 39px; height: 39px; display: grid; place-items: center;
+      border-radius: 12px; color: white; font-weight: 900; font-size: 24px;
+      background: linear-gradient(145deg, #52e0ff, #0878ee 70%);
+      box-shadow: 0 0 24px rgba(0, 152, 255, .3);
+      clip-path: polygon(0 0, 68% 0, 100% 34%, 100% 67%, 69% 100%, 0 100%, 0 75%, 59% 75%, 76% 58%, 76% 42%, 59% 25%, 0 25%);
+    }
+    .brand span span { color: var(--blue); }
+    .nav-links { display: flex; align-items: center; justify-content: center; gap: 8px; margin-left: auto; }
+    .nav-links a { color: #c0d5ed; padding: 11px 15px; border-radius: 10px; font-size: 14px; transition: .2s; }
+    .nav-links a:hover, .nav-links a.active { color: #38caff; background: rgba(0, 142, 255, .09); }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .github-button, .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      border: 1px solid transparent; border-radius: 12px; padding: 12px 19px;
+      font: inherit; font-weight: 700; font-size: 14px; cursor: pointer; transition: .2s;
+    }
+    .github-button, .button-primary { background: linear-gradient(135deg, #0da6ff, #0878ee); color: white; box-shadow: 0 8px 24px rgba(0, 133, 255, .18); }
+    .github-button:hover, .button-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(0, 133, 255, .3); }
+    .menu-toggle { display: none; border: 1px solid var(--line); background: var(--panel); color: white; border-radius: 10px; padding: 9px 12px; font-size: 20px; }
+    .hero { padding: 72px 0 68px; overflow: hidden; border-bottom: 1px solid var(--line); }
+    .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; gap: 38px; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px; color: #bfe9ff; background: rgba(0, 136, 255, .15); border: 1px solid rgba(0, 153, 255, .15); border-radius: 999px; font-size: 13px; font-weight: 700; }
+    .eyebrow .dot { width: 8px; height: 8px; background: var(--cyan); border-radius: 50%; box-shadow: 0 0 12px var(--cyan); }
+    h1 { margin: 18px 0 12px; font-size: clamp(46px, 5.4vw, 72px); line-height: 1.03; letter-spacing: -2.7px; }
+    .gradient-text { background: linear-gradient(95deg, #24b7ff, #0786ff 65%, #62e2ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero h2 { max-width: 560px; margin: 0 0 16px; color: #c9e1fb; font-size: clamp(21px, 2.2vw, 27px); line-height: 1.35; letter-spacing: -.6px; }
+    .hero-copy { max-width: 550px; color: var(--muted); font-size: 16px; margin: 0; }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 28px; }
+    .button-secondary { color: #d9edff; border-color: rgba(112, 170, 224, .4); background: rgba(6, 18, 34, .65); }
+    .button-secondary:hover { border-color: var(--cyan); background: rgba(0, 153, 255, .1); transform: translateY(-2px); }
+    .hero-note { margin-top: 19px; display: flex; align-items: center; gap: 8px; color: #8eaccb; font-size: 12px; }
+    .hero-note svg { color: #4bd6a0; flex: 0 0 auto; }
+    .visual { position: relative; min-height: 350px; display: grid; place-items: center; isolation: isolate; }
+    .orb { position: absolute; width: 340px; height: 340px; border-radius: 50%; background: #0069e8; filter: blur(95px); opacity: .22; z-index: -1; }
+    .orbit { position: absolute; width: 390px; height: 260px; border: 1px solid rgba(0, 160, 255, .23); border-radius: 50%; transform: rotate(-24deg); }
+    .orbit.two { width: 430px; height: 310px; transform: rotate(24deg); border-color: rgba(38, 107, 255, .19); }
+    .mock-window { width: min(100%, 470px); border: 1px solid rgba(68, 164, 255, .5); border-radius: 17px; overflow: hidden; background: linear-gradient(150deg, rgba(17, 40, 69, .98), rgba(5, 15, 31, .98)); box-shadow: 0 22px 60px rgba(0, 0, 0, .4), 0 0 45px rgba(0, 120, 255, .2); transform: perspective(1100px) rotateY(-7deg) rotateX(2deg); }
+    .window-top { height: 40px; display: flex; align-items: center; gap: 7px; padding: 0 14px; border-bottom: 1px solid rgba(82, 150, 213, .2); background: rgba(6, 16, 31, .65); }
+    .window-dot { width: 7px; height: 7px; border-radius: 50%; background: #315a87; }
+    .window-title { margin-left: 8px; font-size: 11px; color: #b8d8f6; }
+    .window-body { display: grid; grid-template-columns: 135px 1fr; min-height: 240px; }
+    .window-side { padding: 14px 9px; border-right: 1px solid rgba(82, 150, 213, .16); }
+    .side-item { padding: 10px 8px; border-radius: 7px; margin-bottom: 6px; color: #a9c8e7; font-size: 10px; background: rgba(34, 66, 103, .3); }
+    .side-item.selected { background: rgba(0, 145, 255, .2); color: #e2f6ff; border: 1px solid rgba(0, 164, 255, .23); }
+    .editor { padding: 17px 14px; }
+    .editor-label { font-size: 11px; color: #8fb9e0; margin-bottom: 9px; }
+    .codebox { border: 1px solid rgba(77, 139, 198, .22); border-radius: 9px; padding: 15px 12px; background: rgba(1, 9, 21, .48); color: #91dfff; font: 11px/1.9 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; min-height: 139px; }
+    .code-muted { color: #7595b8; }
+    .editor-actions { display: flex; gap: 8px; margin-top: 12px; }
+    .mini-button { border-radius: 7px; padding: 8px 15px; background: #078ff3; color: white; font-size: 10px; font-weight: 700; }
+    .mini-button.ghost { background: rgba(32, 64, 100, .4); border: 1px solid rgba(89, 145, 202, .18); color: #c4dff8; }
+    .float-chip { position: absolute; display: grid; place-items: center; width: 55px; height: 55px; border-radius: 15px; background: linear-gradient(145deg, #0e9cff, #1459e9); color: white; font-size: 24px; box-shadow: 0 12px 30px rgba(0, 110, 255, .3); border: 1px solid rgba(150, 218, 255, .35); }
+    .chip-code { top: 23px; left: 1%; transform: rotate(-9deg); }
+    .chip-globe { right: 0; top: 65px; background: linear-gradient(145deg, #9c48ff, #5836e7); transform: rotate(8deg); }
+    .chip-shield { bottom: 35px; left: 0; background: linear-gradient(145deg, #10c99a, #008a79); transform: rotate(-8deg); }
+    .chip-cloud { bottom: 25px; right: 4%; background: linear-gradient(145deg, #1d9dff, #245ce5); transform: rotate(8deg); }
+    .section { padding: 58px 0 66px; }
+    .section-heading { text-align: center; max-width: 650px; margin: 0 auto 29px; }
+    .section-kicker { color: #31c7ff; font-size: 11px; font-weight: 800; letter-spacing: 2.3px; text-transform: uppercase; }
+    h2.section-title { margin: 7px 0 7px; font-size: clamp(28px, 3.3vw, 36px); line-height: 1.2; letter-spacing: -1px; }
+    .section-heading p { color: var(--muted); margin: 0; font-size: 15px; }
+    .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .tool-card { display: flex; align-items: center; gap: 17px; min-height: 112px; padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: linear-gradient(135deg, rgba(12, 29, 51, .8), rgba(7, 19, 36, .7)); transition: .22s; }
+    .tool-card:hover { transform: translateY(-4px); border-color: rgba(31, 174, 255, .65); background: var(--panel-hover); box-shadow: var(--shadow); }
+    .tool-icon { width: 53px; height: 53px; flex: 0 0 53px; display: grid; place-items: center; border-radius: 13px; color: white; font-size: 24px; font-weight: 700; background: linear-gradient(145deg, #238eff, #135ce9); }
+    .tool-icon.purple { background: linear-gradient(145deg, #6a70ff, #4342df); }
+    .tool-icon.green { background: linear-gradient(145deg, #0cc997, #008b76); }
+    .tool-icon.orange { background: linear-gradient(145deg, #ffad3e, #f46a1b); }
+    .tool-icon.cyan { background: linear-gradient(145deg, #13d3dc, #0094b7); }
+    .tool-icon.pink { background: linear-gradient(145deg, #ff4e8b, #d92560); }
+    .tool-content { min-width: 0; flex: 1; }
+    .tool-content h3 { font-size: 15px; line-height: 1.3; margin: 0 0 6px; }
+    .tool-content p { color: var(--muted); font-size: 12px; line-height: 1.55; margin: 0; }
+    .arrow { width: 31px; height: 31px; flex: 0 0 31px; display: grid; place-items: center; border-radius: 50%; color: #b5dfff; background: rgba(34, 77, 120, .35); font-size: 20px; }
+    .about { padding: 0 0 70px; }
+    .about-panel { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; padding: 32px; border: 1px solid var(--line); border-radius: 18px; background: linear-gradient(120deg, rgba(12, 32, 56, .8), rgba(6, 18, 34, .8)); }
+    .about-panel h2 { font-size: 26px; line-height: 1.25; margin: 8px 0 12px; }
+    .about-panel p { color: var(--muted); margin: 0; font-size: 14px; }
+    .benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .benefit { padding: 14px; border-radius: 12px; background: rgba(27, 58, 91, .36); border: 1px solid rgba(90, 153, 211, .12); }
+    .benefit strong { display: block; font-size: 13px; margin-bottom: 3px; }
+    .benefit span { color: var(--muted); font-size: 11px; }
+    .check { color: #45dfb2; margin-right: 5px; }
+    footer { border-top: 1px solid var(--line); background: rgba(3, 11, 23, .6); }
+    .footer-inner { display: flex; align-items: center; gap: 24px; padding: 23px 0; }
+    .footer-inner .brand { font-size: 19px; }
+    .footer-inner .brand-mark { width: 31px; height: 31px; font-size: 18px; }
+    .copyright { color: #87a7c8; font-size: 11px; margin: 0 auto; }
+    .footer-links { display: flex; gap: 19px; color: #a8c2de; font-size: 12px; }
+    .footer-links a:hover { color: var(--cyan); }
+    @media (max-width: 900px) {
+      .nav { gap: 14px; }
+      .nav-links a { padding: 10px 9px; }
+      .hero-grid { gap: 16px; }
+      .visual { min-height: 310px; }
+      .mock-window { transform: none; }
+      .tools-grid { grid-template-columns: repeat(2, 1fr); }
+      .tool-card { padding: 16px; }
+    }
+    @media (max-width: 680px) {
+      .container { width: min(100% - 30px, 540px); }
+      .nav { min-height: 68px; flex-wrap: wrap; }
+      .brand { font-size: 21px; }
+      .brand-mark { width: 34px; height: 34px; }
+      .nav-actions { margin-left: auto; }
+      .github-button { padding: 10px 12px; font-size: 12px; }
+      .menu-toggle { display: inline-flex; }
+      .nav-links { display: none; order: 3; width: 100%; flex-direction: column; align-items: stretch; gap: 3px; padding: 0 0 12px; margin: 0; }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 11px 12px; }
+      .hero { padding: 48px 0 44px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 30px; }
+      h1 { font-size: clamp(45px, 13vw, 62px); letter-spacing: -2px; }
+      .hero h2 { font-size: 22px; }
+      .hero-copy { font-size: 14px; }
+      .hero-buttons { gap: 10px; }
+      .button { padding: 11px 14px; font-size: 13px; }
+      .visual { min-height: 285px; }
+      .mock-window { width: 93%; }
+      .window-body { grid-template-columns: 105px 1fr; min-height: 205px; }
+      .side-item { font-size: 9px; padding: 8px 5px; }
+      .codebox { font-size: 9px; min-height: 120px; padding: 10px; }
+      .float-chip { width: 43px; height: 43px; font-size: 19px; border-radius: 12px; }
+      .chip-code { top: 12px; left: -1%; }
+      .chip-globe { top: 45px; right: -1%; }
+      .chip-shield { bottom: 24px; left: -1%; }
+      .chip-cloud { bottom: 14px; right: 0; }
+      .section { padding: 43px 0 48px; }
+      .tools-grid { grid-template-columns: 1fr; gap: 11px; }
+      .tool-card { min-height: 94px; }
+      .about { padding-bottom: 45px; }
+      .about-panel { grid-template-columns: 1fr; padding: 22px; gap: 22px; }
+      .about-panel h2 { font-size: 23px; }
+      .benefits { gap: 9px; }
+      .footer-inner { flex-wrap: wrap; gap: 14px; }
+      .copyright { order: 3; flex-basis: 100%; margin: 0; }
+      .footer-links { margin-left: auto; gap: 12px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#beranda" aria-label="Damar Tools, beranda">
+        <span class="brand-mark" aria-hidden="true">D</span>
+        <span>Damar <span>Tools</span></span>
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Navigasi utama">
+        <a class="active" href="#beranda">⌂ &nbsp;Beranda</a>
+        <a href="#tools">⚒ &nbsp;Tools</a>
+        <a href="#tentang">ⓘ &nbsp;Tentang</a>
+        <a href="#kontak">✉ &nbsp;Kontak</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="github-button" href="https://github.com/" target="_blank" rel="noopener noreferrer" aria-label="Buka GitHub">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .9a11.1 11.1 0 0 0-3.51 21.63c.56.1.76-.24.76-.54v-2.1c-3.1.67-3.76-1.32-3.76-1.32-.5-1.29-1.24-1.63-1.24-1.63-1.02-.7.08-.69.08-.69 1.12.08 1.71 1.15 1.71 1.15 1 1.7 2.62 1.21 3.26.93.1-.73.39-1.21.71-1.49-2.48-.28-5.09-1.24-5.09-5.52 0-1.22.44-2.22 1.15-3-.12-.28-.5-1.42.11-2.96 0 0 .94-.3 3.05 1.14a10.6 10.6 0 0 1 5.55 0c2.11-1.44 3.05-1.14 3.05-1.14.61 1.54.23 2.68.11 2.96.72.78 1.15 1.78 1.15 3 0 4.29-2.61 5.24-5.1 5.51.4.35.76 1.03.76 2.08v3.08c0 .3.2.65.77.54A11.1 11.1 0 0 0 12 .9Z"/></svg>
+          GitHub
+        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Buka menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="eyebrow"><span class="dot"></span> Free Online Tools</div>
+          <h1>Damar <span class="gradient-text">Tools</span></h1>
+          <h2>Kumpulan Tools Online Gratis untuk Mempermudah Aktivitas Anda</h2>
+          <p class="hero-copy">Damar Tools adalah konsep kumpulan alat online yang praktis, cepat, dan mudah digunakan. Semua dirancang agar aktivitas digital Anda terasa lebih sederhana, langsung dari browser.</p>
+          <div class="hero-buttons">
+            <a class="button button-primary" href="#tools">
+              <span aria-hidden="true">➜</span> Mulai Jelajahi <span aria-hidden="true">›</span>
+            </a>
+            <a class="button button-secondary" href="#tentang">
+              <span aria-hidden="true">▤</span> Tentang Damar Tools
+            </a>
+          </div>
+          <div class="hero-note">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><path d="m5 12 4 4L19 6"/></svg>
+            Gratis diakses • Praktis • Berbasis browser
+          </div>
+        </div>
+
+        <div class="visual" aria-label="Ilustrasi dashboard tools online">
+          <div class="orb"></div><div class="orbit"></div><div class="orbit two"></div>
+          <div class="float-chip chip-code" aria-hidden="true">&lt;/&gt;</div>
+          <div class="float-chip chip-globe" aria-hidden="true">◎</div>
+          <div class="float-chip chip-shield" aria-hidden="true">◇</div>
+          <div class="float-chip chip-cloud" aria-hidden="true">☁</div>
+          <div class="mock-window">
+            <div class="window-top"><span class="window-dot"></span><span class="window-dot"></span><span class="window-dot"></span><span class="window-title">◈ &nbsp; Damar Tools</span></div>
+            <div class="window-body">
+              <div class="window-side">
+                <div class="side-item selected">⌘ &nbsp; JSON Formatter</div>
+                <div class="side-item">↔ &nbsp; Base64 Tool</div>
+                <div class="side-item">⚿ &nbsp; Password</div>
+                <div class="side-item">‹› &nbsp; HTML Tools</div>
+                <div class="side-item">◎ &nbsp; Domain Lookup</div>
+              </div>
+              <div class="editor">
+                <div class="editor-label">Preview / JSON</div>
+                <div class="codebox"><span class="code-muted">{</span><br>&nbsp; "nama": <span style="color:#a8edc4">"Damar Tools"</span>,<br>&nbsp; "jenis": <span style="color:#a8edc4">"Online Tools"</span>,<br>&nbsp; "status": <span style="color:#a8edc4">"Coming Soon"</span>,<br>&nbsp; "versi": <span style="color:#a8edc4">"1.0.0"</span><br><span class="code-muted">}</span></div>
+                <div class="editor-actions"><span class="mini-button">Jelajahi</span><span class="mini-button ghost">Lihat fitur</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tools">
+      <div class="container">
+        <div class="section-heading">
+          <div class="section-kicker">Fitur Utama</div>
+          <h2 class="section-title">Tools yang Direncanakan</h2>
+          <p>Kumpulan alat digital yang bisa dikembangkan sesuai kebutuhan Anda.</p>
+        </div>
+        <div class="tools-grid">
+          <a class="tool-card" href="#kontak">
+            <div class="tool-icon">{ }</div>
+            <div class="tool-content"><h3>JSON Formatter</h3><p>Rapikan dan validasi format JSON agar mudah dibaca.</p></div>
+            <span class="arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="tool-card" href="#kontak">
+            <div class="tool-icon purple">&lt;/&gt;</div>
+            <div class="tool-content"><h3>HTML / CSS Tools</h3><p>Ruang untuk utilitas kode web dan pengembangan.</p></div>
+            <span class="arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="tool-card" href="#kontak">
+            <div class="tool-icon green">▣</div>
+            <div class="tool-content"><h3>Base64 Encoder / Decoder</h3><p>Konsep alat konversi teks Base64 dengan cepat.</p></div>
+            <span class="arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="tool-card" href="#kontak">
+            <div class="tool-icon orange">⚿</div>
+            <div class="tool-content"><h3>Password Generator</h3><p>Rencana fitur untuk membuat kata sandi acak.</p></div>
+            <span class="arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="tool-card" href="#kontak">
+            <div class="tool-icon cyan">◎</div>
+            <div class="tool-content"><h3>Domain &amp; IP Lookup</h3><p>Rencana alat untuk mencari informasi domain dan IP.</p></div>
+            <span class="arrow" aria-hidden="true">›</span>
+          </a>
+          <a class="tool-card" href="#kontak">
+            <div class="tool-icon pink">◇</div>
+            <div class="tool-content"><h3>Website Status Checker</h3><p>Konsep pengecekan status website melalui layanan yang sesuai.</p></div>
+            <span class="arrow" aria-hidden="true">›</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="tentang">
+      <div class="container">
+        <div class="about-panel">
+          <div>
+            <div class="section-kicker">Tentang Proyek</div>
+            <h2>Tools sederhana, pengalaman yang lebih praktis.</h2>
+            <p>Damar Tools dirancang sebagai landing page untuk kumpulan utilitas digital. Halaman ini merupakan tampilan awal; kartu fitur dapat dihubungkan ke tools sebenarnya ketika fitur-fitur tersebut sudah dibuat.</p>
+          </div>
+          <div class="benefits">
+            <div class="benefit"><strong><span class="check">✓</span> Responsif</strong><span>Nyaman di desktop dan ponsel.</span></div>
+            <div class="benefit"><strong><span class="check">✓</span> Ringan</strong><span>HTML, CSS, dan JavaScript.</span></div>
+            <div class="benefit"><strong><span class="check">✓</span> Mudah dikembangkan</strong><span>Struktur sederhana untuk pemula.</span></div>
+            <div class="benefit"><strong><span class="check">✓</span> Siap untuk Pages</strong><span>Dapat di-host di GitHub Pages.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="kontak">
+    <div class="container footer-inner">
+      <a class="brand" href="#beranda">
+        <span class="brand-mark" aria-hidden="true">D</span>
+        <span>Damar <span>Tools</span></span>
+      </a>
+      <p class="copyright">© <span id="year"></span> Damar Tools. Dibuat untuk mempermudah aktivitas digital.</p>
+      <nav class="footer-links" aria-label="Navigasi footer">
+        <a href="#beranda">Beranda</a><a href="#tools">Tools</a><a href="#tentang">Tentang</a><a href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuToggle.setAttribute('aria-label', isOpen ? 'Tutup menu' : 'Buka menu');
+      menuToggle.textContent = isOpen ? '×' : '☰';
+    });
+
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Buka menu');
+        menuToggle.textContent = '☰';
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
